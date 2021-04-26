@@ -2,6 +2,8 @@ package day18;
 
 import java.util.Scanner;
 
+import day18.entity.User;
+
 public class Test1 {
 
 	public static void main(String[] args) throws Exception {
