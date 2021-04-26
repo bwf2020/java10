@@ -11,6 +11,7 @@ public class Test2 {
 
 	public static void main(String[] args) throws Exception {
 
+		
 		// 就是在DriverManager类中注册了一个驱动
 		Class.forName("com.mysql.jdbc.Driver");
 
