@@ -19,7 +19,7 @@ public class UserDAO {
 	
 	public void add(User user) {
 		
-	
+		
 		Connection conn=DBUtil.getConn();
 		
 		String sql =" insert into user(id,name) values(?,?) ";
@@ -159,6 +159,68 @@ public List<UserTel> getUserTel(){
 		
 		return null;
 	}
+
+
+public void del(int id) {
 	
+	Connection conn=DBUtil.getConn();
+	
+	String sql=" delete from user where id=? ";
+	try {
+		PreparedStatement pcmd=conn.prepareStatement(sql);
+		pcmd.setInt(1, id);
+		pcmd.executeUpdate();
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+}
+
+/*public static void main(String[] args) {
+	
+	UserDAO userDAO=new UserDAO();
+	userDAO.del(1);
+}
+	*/
+
+
+
+/**
+ * 获取所有的用户
+ * @return
+ */
+public List<User> getAll(){
+	
+	
+		List<User> userList=new ArrayList<>();
+	
+		Connection conn=DBUtil.getConn();
+		String sql=" select * from user  ";
+		try {
+			PreparedStatement pcmd=conn.prepareStatement(sql);
+			ResultSet rs=pcmd.executeQuery();
+			while(rs.next()) {
+				
+				User user=new User();
+				user.setId(rs.getInt("id"));
+				user.setName(rs.getString("name"));
+				
+				userList.add(user);
+				
+				
+			}
+			
+			return userList;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+	
+}
 	
 }
